@@ -1,0 +1,151 @@
+@font-face {
+    font-family: WorkSans;
+    src: url(WorkSans-Black.ttf);
+}
+
+* {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+        background: transparent;
+    }
+
+#timer {
+    color: red;
+    font-family: WorkSans;
+    font-size: 100px;
+    text-align: center;
+    margin-top: 17%;
+    background-color: aqua;
+    margin: 3%;
+}
+
+#buttons {
+    margin: 0;
+    position: fixed;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: 3px solid black;
+    background-color: aqua;
+    border-radius: 10px;
+}
+
+.button {
+    font-family: WorkSans;
+    border: none;
+    color: white;
+
+    display: flex;
+    padding: 15px 32px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    margin: 4px 4px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.dispatch:hover {
+    background-color: white;
+}
+
+.estop:hover {
+    background-color: white;
+    color:red
+}
+
+.dispatch {
+    border: 3px solid black;
+    background-color: greenyellow;
+    color:green;
+   
+}
+
+.estop {
+    border: 3px solid black;
+    background-color: #ff3636;
+    color:#820000;
+}
+
+#avgtime {
+    display: inline-block;
+    font-family: WorkSans;
+    padding: 10px 10px;
+    margin-top: 0px;
+    font-size: 250%;
+    color: black;
+    transition-duration: 0.5s;
+}
+
+
+#capacitycalc {
+    display: inline-block;
+    text-align: right;
+    float: right;
+    font-family: WorkSans;
+    padding: 10px 10px;
+    margin-top: 0px;
+    font-size: 250%;
+    color: black;
+    transition-duration: 0.5s;
+}
+
+table, th, td {
+    border:3px solid black;
+    text-align: center;
+    padding: 10px 10px;
+}
+
+#last5 {
+    text-align: center;
+    color: black;
+    font-family: WorkSans;
+    padding: 10px 10px;
+}
+
+#quickcalc {
+    position: fixed;
+    display: inline-block;
+    bottom: 5%;
+    right: 5%;
+    color: black;
+    font-family: WorkSans;
+}
+
+#quickcalc #calcbutton {
+    font-family: WorkSans;
+    border: 3px solid black;
+    color: red;
+    padding: 0px 24px;
+    border-radius: 10px;
+    font-size: 24px;
+    background-color: aqua;
+    align-content: center;
+    text-align: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+#quickcalc #calcbutton:hover {
+    background-color: white;
+    color: green;
+}
+
+#footer {
+    position: fixed; 
+    background:gray; 
+    width:100%;
+    bottom:0;
+}

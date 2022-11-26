@@ -1,0 +1,39 @@
+<head>
+    <title>Dispatch Timer</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <script src="backend.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <div id="buttons">
+        <div id="timer"><span id="sec">00</span></div>
+        <button class="button dispatch" onclick="DispatchClick()">Dispatch</button>
+        <button class="button estop" onclick="EstopClick()">ESTOP</button>
+    </div>
+    <div id="avgtime">
+    <p id = "coastername" contenteditable="True">Coaster Name</p>
+    <span>avg dispatch time: </span><span id="timeavg">00</span>
+    </div> 
+    <div id="capacitycalc">
+    <p id="seats" contenteditable="True">Seats per Train</p>
+    <span>Hourly Capacity:</span><span id="hourly">000</span>
+    </div>
+    <div id="last5">
+        <table id="tabledata">
+            <tr>
+              <th>Dispatch #</th>
+              <th>Time</th>
+            </tr>  
+          </table>
+    </div>
+    <div id="quickcalc">
+        (3600 / <span id="qdispatchtime" contenteditable="true">Dispatch Time</span>) * <span id="qseats" contenteditable="true">Seats </span> = <span id="qhourly" contenteditable="true">hourly</span>
+        <br>
+        <button id="calcbutton" onclick="quickCalcClick()">Calculate</button>
+    </div>
+    <br>
+    <div id="footer">
+        <p>Made by Mars</p>
+    </div>
+</body>

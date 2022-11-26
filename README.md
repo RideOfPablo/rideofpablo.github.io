@@ -1,1 +1,0 @@
-# rideofpablo.github.io
