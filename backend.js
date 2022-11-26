@@ -5,7 +5,7 @@ var Clock = {
           var self = this;
           function pad(val) { return val > 9 ? val : "0" + val; }
           this.interval = setInterval(function () {
-            self.totalSeconds += 25;
+            self.totalSeconds += 1;
             document.getElementById("sec").innerHTML = pad(parseInt(self.totalSeconds));
           }, 1000);
       }
