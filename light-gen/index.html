@@ -1,45 +1,63 @@
 <head>
-    <title>Lighting Package Gen</title>
-    <link rel="stylesheet" href="style.css">
+  <title>Lighting Package Gen</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="backend.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <div id="title">
-        <h1>Lighting Package script gen</h1>
-    </div>
-    <div id="inputs">
-        <label>Starting Color</label><br>
-        <input type="text" id="StartC" value="0, 0, 0"><br>
-        <label>Ending Color</label><br>
-        <input type="text" id="EndC" value="255, 255, 255"><br>
-        <label>Steps</label>
-        <input id="stepsRange" type="range" min="1" max="30" value="15">
-        <span id="stepsVal"></span><span> steps</span><br>
-        <script>
-            var slider = document.getElementById("stepsRange");
-            var output = document.getElementById("stepsVal");
-            output.innerHTML = slider.value;
-            
-            slider.oninput = function() {
-              output.innerHTML = this.value;
-            }
-        </script>
-        <label>Delay (ms)</label>
-        <input type="range" min="10" max="100" value="50" step="5" id="delayRange">
-        <span id="delayVal"></span><span> ms</span><br>
-        <script>
-            var slider2 = document.getElementById("delayRange");
-            var output2 = document.getElementById("delayVal");
-            output2.innerHTML = slider2.value;
-            
-            slider2.oninput = function() {
-              output2.innerHTML = this.value;
-            }
-        </script>
-        <button onclick="formSubmit()">Submit</button><br>
-        <span id="testspan"></span>
-        <span id="testspan2"></span>
-        <span id="testspan3"></span>
-    </div>
+  <script src="backend.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <div id="title">
+      <h1>Lighting Package script gen</h1>
+  </div>
+  <div id="inputs">
+      <label>Starting Color</label><br>
+      <input type="text" id="StartC" value="0, 0, 0"><br>
+      <label>Ending Color</label><br>
+      <input type="text" id="EndC" value="255, 255, 255"><br>
+      <label>Steps</label>
+      <input id="stepsRange" type="range" min="1" max="30" value="15">
+      <span id="stepsVal"></span><span> steps</span><br>
+      <script>
+          var slider = document.getElementById("stepsRange");
+          var output = document.getElementById("stepsVal");
+          output.innerHTML = slider.value;
+          
+          slider.oninput = function() {
+            output.innerHTML = this.value;
+            updateTotalTime()
+          }
+          
+          function updateTotalTime() {
+            var time = parseInt(output2.innerHTML) * parseInt(document.getElementById("stepsVal").innerHTML)
+            totalTime.innerHTML = time
+          }
+      </script>
+      <label>Delay (ms)</label>
+      <input type="range" min="10" max="100" value="50" step="5" id="delayRange">
+      <span id="delayVal"></span><span> ms</span><br>
+      <span>Total Time: </span><span id = totalTime></span><span> ms</span> <br>
+      <script>
+          var slider2 = document.getElementById("delayRange");
+          var output2 = document.getElementById("delayVal");
+          var totalTime = document.getElementById("totalTime");
+          output2.innerHTML = slider2.value;
+          updateTotalTime()
+          slider2.oninput = function() {
+            output2.innerHTML = this.value;
+            updateTotalTime()
+          }
+          
+          function updateTotalTime() {
+            var time = parseInt(output2.innerHTML) * parseInt(document.getElementById("stepsVal").innerHTML)
+            totalTime.innerHTML = time
+          }
+          
+      </script>
+      <button onclick="formSubmit()">Submit</button><br>
+      <span id="testspan"></span>  <br>
+      <span id="testspan2"></span> <br>
+      <span id="testspan3"></span> <br>
+      <span id="preamble">DEF GRADIENT</span>
+      <span id="output"><br><br>Output will go here, configure your settings above, then press "Submit"</span>
+      <span id="post"><br><br>DEF MAIN <br>&nbsp&nbsp&nbspJUMP GRADIENT</span>
+  </div>
 </body>

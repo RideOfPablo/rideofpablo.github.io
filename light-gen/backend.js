@@ -3,7 +3,7 @@ function formSubmit() {
     var endColor = document.getElementById("EndC").value
     var steps = document.getElementById("stepsRange").value
     var delay = document.getElementById("delayRange").value
-    document.getElementById("testspan").innerHTML = steps + " | "+ delay
+    //document.getElementById("testspan").innerHTML = steps + " | "+ delay
     var startColorList = startColor.replace(/[^.\d /s]/g,'').split(" ")
     var endColorList = endColor.replace(/[^.\d /s]/g,'').split(" ")
     var startR = startColorList[0]
@@ -19,7 +19,6 @@ function formSubmit() {
     var diffRed = parseInt(endR) - parseInt(startR)
     var diffGreen = parseInt(endG) - parseInt(startG)
     var diffBlue = parseInt(endB) - parseInt(startB)
-    console.log(startR)
     r_Interp.push(startR)
     g_Interp.push(startG)
     b_Interp.push(startB)
@@ -31,7 +30,14 @@ function formSubmit() {
         g_Interp.push(Math.round(diffGreen*fadePercent) + Math.round(startG))
         b_Interp.push(Math.round(diffBlue*fadePercent) + Math.round(startB))
     }
-    document.getElementById("testspan").innerHTML = r_Interp    
-    document.getElementById("testspan2").innerHTML = g_Interp
-    document.getElementById("testspan3").innerHTML = b_Interp
+    //document.getElementById("testspan").innerHTML = r_Interp    
+    //document.getElementById("testspan2").innerHTML = g_Interp
+    //document.getElementById("testspan3").innerHTML = b_Interp
+    var outputLines = ""
+    //"<br>&nbsp&nbsp&nbsp&nbspSET ALL "+startR+" "+startG+" "+startB + "<br>&nbsp&nbsp&nbsp&nbspDELAY "+delay
+    // \t = tab
+    for (var i=0; i < r_Interp.length; i++) {
+    	outputLines += "<br>&nbsp&nbsp&nbsp&nbspSET ALL "+r_Interp[i]+" "+g_Interp[i]+" "+b_Interp[i]+"<br>&nbsp&nbsp&nbsp&nbspDELAY "+delay 
+    }
+    document.getElementById("output").innerHTML = outputLines
 }
