@@ -20,6 +20,9 @@ function formSubmit() {
     var diffGreen = parseInt(endG) - parseInt(startG)
     var diffBlue = parseInt(endB) - parseInt(startB)
     console.log(startR)
+    r_Interp.push(startR)
+    g_Interp.push(startG)
+    b_Interp.push(startB)
     for (var i = 0; i < parseInt(steps); i++) {
         var fadePercent = (i + 1) / steps
         fades.push(fadePercent)
@@ -28,7 +31,7 @@ function formSubmit() {
         g_Interp.push(Math.round(diffGreen*fadePercent) + Math.round(startG))
         b_Interp.push(Math.round(diffBlue*fadePercent) + Math.round(startB))
     }
-    document.getElementById("testspan").innerHTML = r_Interp
+    document.getElementById("testspan").innerHTML = r_Interp    
     document.getElementById("testspan2").innerHTML = g_Interp
     document.getElementById("testspan3").innerHTML = b_Interp
 }
