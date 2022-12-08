@@ -34,10 +34,10 @@ function formSubmit() {
     //document.getElementById("testspan2").innerHTML = g_Interp
     //document.getElementById("testspan3").innerHTML = b_Interp
     var outputLines = ""
-    //"<br>&nbsp&nbsp&nbsp&nbspSET ALL "+startR+" "+startG+" "+startB + "<br>&nbsp&nbsp&nbsp&nbspDELAY "+delay
+    //"<br>\u00A0\u00A0\u00A0\u00A0SET ALL "+startR+" "+startG+" "+startB + "<br>\u00A0\u00A0\u00A0\u00A0DELAY "+delay
     // \t = tab
     for (var i=0; i < r_Interp.length; i++) {
-    	outputLines += "<br>&nbsp&nbsp&nbsp&nbspSET ALL "+r_Interp[i]+" "+g_Interp[i]+" "+b_Interp[i]+"<br>&nbsp&nbsp&nbsp&nbspDELAY "+delay 
+    	outputLines += "<br>\u00A0\u00A0\u00A0\u00A0SET ALL "+r_Interp[i]+" "+g_Interp[i]+" "+b_Interp[i]+"<br>\u00A0\u00A0\u00A0\u00A0DELAY "+delay 
     }
     document.getElementById("output").innerHTML = outputLines
 }
