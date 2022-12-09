@@ -123,8 +123,9 @@
     </script>
     <button id="devmode" onclick="devModeToggle()">Toggle Dev Mode</button>
     <div id="devmodehidden">
-      <span>Hidden</span>
+      <span id="warn">WARNING: Changing the value to something other than "MAX" <br> can have unintended consequenses, do not change unless you know what you are doing </span> <br>
+      <input type="text" id="timeVal" size=2, maxlength=5 value="MAX"><span> Number of lights long the total section is</span><br>
     </div>
-    <span id="devmodespan"></span>
+    
   </div>
 </body>

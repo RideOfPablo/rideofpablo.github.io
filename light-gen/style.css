@@ -68,3 +68,7 @@ input {
 #devmodehidden {
     display: none;
 }
+#warn {
+    color: red;
+    vertical-align: bottom;
+}
