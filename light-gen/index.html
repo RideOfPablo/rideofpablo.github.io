@@ -16,7 +16,7 @@
   <br><br>
   <div id="gradient">
     <label>Starting Color</label><br>
-    <input type="text" id="StartC" value="0, 0, 0"> <button onclick="startCRandom()">Random</button> <div id="colorpreview1"></div> <br>
+    <input type="text" id="StartC" size=10 value="0, 0, 0"> <button onclick="startCRandom()">Random</button> <div id="colorpreview1"></div> <br>
     <script>
       var Start = document.getElementById("StartC")
       Start.oninput = function () {
@@ -24,7 +24,7 @@
       }
     </script>
     <label>Ending Color</label><br>
-    <input type="text" id="EndC" value="180, 180, 180"> <button onclick="endCRandom()">Random</button> <div id="colorpreview2"></div> <br>
+    <input type="text" id="EndC" size=10 value="180, 180, 180"> <button onclick="endCRandom()">Random</button> <div id="colorpreview2"></div> <br>
     <script>
       var End = document.getElementById("EndC")
       End.oninput = function () {
@@ -97,5 +97,34 @@
         updateColorPreview1()
       }
     </script>
+    <input type="range" min="1" max="50" value="10" step="1" id="lightsRange">
+    <input type="text" id="lightsVal" size=2 maxlength=4 value=10><span> Lights per section</span><br>
+    <script>
+      var lightsRange = document.getElementById("lightsRange")
+      var lightsVal = document.getElementById("lightsVal")
+      lightsRange.oninput = function() {
+        lightsVal.value = lightsRange.value
+      }
+      lightsVal.oninput = function() {
+        lightsRange.value = lightsVal.value
+      }
+    </script>
+    <input type="range" min="10" max="3000" value="500" step="10" id="timeRange">
+    <input type="text" id="timeVal" size=2, maxlength=5 value="500"><span> Time in between flashes</span><br>
+    <script>
+      var timeRange = document.getElementById("timeRange")
+      var timeVal = document.getElementById("timeVal")
+      timeRange.oninput = function() {
+        timeVal.value = timeRange.value
+      }
+      timeVal.oninput = function() {
+        timeRange.value = timeVal.value
+      }
+    </script>
+    <button id="devmode" onclick="devModeToggle()">Toggle Dev Mode</button>
+    <div id="devmodehidden">
+      <span>Hidden</span>
+    </div>
+    <span id="devmodespan"></span>
   </div>
 </body>

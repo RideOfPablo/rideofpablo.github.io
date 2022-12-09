@@ -60,3 +60,11 @@ input {
     vertical-align: middle;
     margin-top: 5px;
 }
+
+#devmode {
+    font-size: 80%;
+}
+
+#devmodehidden {
+    display: none;
+}

@@ -116,6 +116,7 @@ function copyTxt() {
 
 function updateMode() {
     var list = document.getElementById("dropdown")
+    document.getElementById("devmodehidden").style.display = "none"
     if (list.value == "chaser") {
         document.getElementById("gradient").style.display = "none"
         document.getElementById("chaser").style.display = "block"
@@ -138,4 +139,12 @@ function updateColorPreview3() {
     value2 = document.getElementById("CStartC").value
     console.log(value2)
     preview2.style.backgroundColor = "rgb("+value2+")"
+}
+function devModeToggle() {
+    devModeDiv = document.getElementById("devmodehidden")
+    if (devModeDiv.style.display == "none") {
+        devModeDiv.style.display = "block"
+    } else {
+        devModeDiv.style.display = "none"
+    }
 }
