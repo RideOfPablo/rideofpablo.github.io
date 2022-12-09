@@ -8,78 +8,94 @@
   <div id="title">
       <h1>Lighting Package script gen</h1>
   </div>
-  <div id="inputs">
-      <label>Starting Color</label><br>
-      <input type="text" id="StartC" value="0, 0, 0"> <button onclick="startCRandom()">Random</button> <div id="colorpreview1"></div> <br>
-      <script>
-        var Start = document.getElementById("StartC")
-        Start.oninput = function () {
-          updateColorPreview1()
-        }
-      </script>
-      <label>Ending Color</label><br>
-      <input type="text" id="EndC" value="180, 180, 180"> <button onclick="endCRandom()">Random</button> <div id="colorpreview2"></div> <br>
-      <script>
-        var End = document.getElementById("EndC")
-        End.oninput = function () {
-          updateColorPreview2()
-        }
-      </script>
-      <label>Steps</label>
-      <input id="stepsRange" type="range" min="1" max="30" value="15">
-      <input type="text" id="stepsVal" size=1 maxlength=3 value=15><span><span> steps</span><br>
-      <script>
-          var slider = document.getElementById("stepsRange");
-          var output = document.getElementById("stepsVal");
-          output.innerHTML = slider.value;
-          
-          slider.oninput = function() {
-            output.value = this.value;
-            updateTotalTime()
-          }
-          output.oninput = function() {
-          	slider.value = output.value
-          	updateTotalTime()
-          }
-          
-          function updateTotalTime() {
-            var time = parseInt(output2.innerHTML) * parseInt(document.getElementById("stepsVal").innerHTML)
-            totalTime.innerHTML = time
-          }
-      </script>
-      <label>Delay (ms)</label>
-      <input type="range" min="10" max="100" value="50" step="5" id="delayRange">
-      <input type="text" id="delayVal" size=1 maxlength=4 value=50><span> ms</span><br>
-      <span>Total Time: </span><span id = totalTime></span><span> ms</span> <br>
-      <script>
-          var slider2 = document.getElementById("delayRange");
-          var output2 = document.getElementById("delayVal");
-          var totalTime = document.getElementById("totalTime");
-          output2.innerHTML = slider2.value;
+  <span>Mode: </span>
+  <select name="type" id="dropdown" oninput="updateMode()">
+    <option value="gradient">Gradient</option>
+    <option value="chaser">Chaser</option>
+  </select>
+  <br><br>
+  <div id="gradient">
+    <label>Starting Color</label><br>
+    <input type="text" id="StartC" value="0, 0, 0"> <button onclick="startCRandom()">Random</button> <div id="colorpreview1"></div> <br>
+    <script>
+      var Start = document.getElementById("StartC")
+      Start.oninput = function () {
+        updateColorPreview1()
+      }
+    </script>
+    <label>Ending Color</label><br>
+    <input type="text" id="EndC" value="180, 180, 180"> <button onclick="endCRandom()">Random</button> <div id="colorpreview2"></div> <br>
+    <script>
+      var End = document.getElementById("EndC")
+      End.oninput = function () {
+        updateColorPreview2()
+      }
+    </script>
+    <label>Steps</label>
+    <input id="stepsRange" type="range" min="1" max="30" value="15">
+    <input type="text" id="stepsVal" size=1 maxlength=3 value=15><span><span> steps</span><br>
+    <script>
+        var slider = document.getElementById("stepsRange");
+        var output = document.getElementById("stepsVal");
+        output.innerHTML = slider.value;
+        
+        slider.oninput = function() {
+          output.value = this.value;
           updateTotalTime()
-          slider2.oninput = function() {
-            output2.value = this.value;
-            updateTotalTime()
-          }
-          
-          output2.oninput = function() {
-          	slider2.value = output2.value
-          	updateTotalTime()
-          }
-          
-          function updateTotalTime() {
-            var time = parseInt(output2.value) * parseInt(document.getElementById("stepsVal").value)
-            totalTime.innerHTML = time
-          }
-          
-      </script>
-      <button id="submitbutton" onclick="formSubmit()">Submit</button>
-      <button id="exportbutton" onclick="exportTxt()">Export</button>
-      <button id="copybutton" onclick="copyTxt()">Copy</button>
-      <br>
-      <span id="testspan"></span>  <br>
-      <span id="testspan2"></span> <br>
-      <span id="testspan3"></span> <br>
-      <span id="output"><br><br>Output will go here, configure your settings above, then press "Submit"</span>
+        }
+        output.oninput = function() {
+          slider.value = output.value
+          updateTotalTime()
+        }
+        
+        function updateTotalTime() {
+          var time = parseInt(output2.innerHTML) * parseInt(document.getElementById("stepsVal").innerHTML)
+          totalTime.innerHTML = time
+        }
+    </script>
+    <label>Delay (ms)</label>
+    <input type="range" min="10" max="100" value="50" step="5" id="delayRange">
+    <input type="text" id="delayVal" size=1 maxlength=4 value=50><span> ms</span><br>
+    <span>Total Time: </span><span id = totalTime></span><span> ms</span> <br>
+    <script>
+        var slider2 = document.getElementById("delayRange");
+        var output2 = document.getElementById("delayVal");
+        var totalTime = document.getElementById("totalTime");
+        output2.innerHTML = slider2.value;
+        updateTotalTime()
+        slider2.oninput = function() {
+          output2.value = this.value;
+          updateTotalTime()
+        }
+        
+        output2.oninput = function() {
+          slider2.value = output2.value
+          updateTotalTime()
+        }
+        
+        function updateTotalTime() {
+          var time = parseInt(output2.value) * parseInt(document.getElementById("stepsVal").value)
+          totalTime.innerHTML = time
+        }
+        
+    </script>
+    <button id="submitbutton" onclick="formSubmit()">Submit</button>
+    <button id="exportbutton" onclick="exportTxt()">Export</button>
+    <button id="copybutton" onclick="copyTxt()">Copy</button>
+    <br>
+    <span id="testspan"></span>  <br>
+    <span id="testspan2"></span> <br>
+    <span id="testspan3"></span> <br>
+    <span id="output"><br><br>Output will go here, configure your settings above, then press "Submit"</span>
+  </div>
+  <div id="chaser">
+    <label>Color</label><br>
+    <input type="text" id="CStartC" value="0, 0, 0"> <button onclick="CstartCRandom()">Random</button> <div id="colorpreview3"></div> <br>
+    <script>
+      var Start = document.getElementById("CStartC")
+      Start.oninput = function () {
+        updateColorPreview1()
+      }
+    </script>
   </div>
 </body>

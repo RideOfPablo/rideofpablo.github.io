@@ -113,3 +113,29 @@ function copyTxt() {
     navigator.clipboard.writeText(text);
     alert("Copied the text!") 
 }
+
+function updateMode() {
+    var list = document.getElementById("dropdown")
+    if (list.value == "chaser") {
+        document.getElementById("gradient").style.display = "none"
+        document.getElementById("chaser").style.display = "block"
+    }
+    if (list.value == "gradient") {
+        document.getElementById("gradient").style.display = "block"
+        document.getElementById("chaser").style.display = "none"
+    }
+}
+
+function CstartCRandom() {
+    var randomtext = getRandomInt(255)+", "+getRandomInt(255)+", "+getRandomInt(255)
+    console.log(randomtext)
+    document.getElementById("CStartC").value = randomtext.toString()
+    updateColorPreview3()
+}
+
+function updateColorPreview3() {
+    preview2 = document.getElementById("colorpreview3")
+    value2 = document.getElementById("CStartC").value
+    console.log(value2)
+    preview2.style.backgroundColor = "rgb("+value2+")"
+}

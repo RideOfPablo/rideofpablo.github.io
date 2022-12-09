@@ -3,6 +3,14 @@
     src: url(WorkSans-Black.ttf);
 }
 
+#gradient {
+    display:block;
+}
+
+#chaser {
+    display:none;
+}
+
 #colorpreview1 {
     display: inline-block;
     width: 20px;
@@ -10,7 +18,7 @@
     background-color: rgb(0,0,0);
     left: 5px;
     top: 5px;
-    vertical-align:bottom;
+    vertical-align:middle;
 }
 
 #colorpreview2 {
@@ -20,7 +28,17 @@
     background-color: rgb(180,180,180);
     left: 5px;
     top: 5px;
-    vertical-align:bottom;
+    vertical-align:middle;
+}
+
+#colorpreview3 {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(0,0,0);
+    left: 5px;
+    top: 5px;
+    vertical-align:middle;
 }
 
 #stepsRange{
