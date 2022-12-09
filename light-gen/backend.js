@@ -1,11 +1,33 @@
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
-  }
+}
+
+function updateColorPreview1() {
+    preview = document.getElementById("colorpreview1")
+    value = document.getElementById("StartC").value
+    console.log(value)
+    preview.style.backgroundColor = "rgb("+value+")"
+}
+
+function updateColorPreview2() {
+    preview2 = document.getElementById("colorpreview2")
+    value2 = document.getElementById("EndC").value
+    console.log(value2)
+    preview2.style.backgroundColor = "rgb("+value2+")"
+}
 
 function startCRandom() {
     var randomtext = getRandomInt(255)+", "+getRandomInt(255)+", "+getRandomInt(255)
     console.log(randomtext)
     document.getElementById("StartC").value = randomtext.toString()
+    updateColorPreview1()
+}
+
+function endCRandom() {
+    var randomtext = getRandomInt(255)+", "+getRandomInt(255)+", "+getRandomInt(255)
+    console.log(randomtext)
+    document.getElementById("EndC").value = randomtext.toString()
+    updateColorPreview2()
 }
 
 function formSubmit() {
@@ -45,6 +67,7 @@ function formSubmit() {
     //document.getElementById("testspan2").innerHTML = g_Interp
     //document.getElementById("testspan3").innerHTML = b_Interp
     var outputLines = ""
+    outputLines += "DEF GRADIENT"
     //"<br>\xa0\xa0\xa0\xa0SET ALL "+startR+" "+startG+" "+startB + "<br>\xa0\xa0\xa0\xa0DELAY "+delay
     // \t = tab
     for (var i=0; i < r_Interp.length; i++) {
@@ -64,7 +87,34 @@ function formSubmit() {
         else {
         outputLines += "<br> &nbsp &nbsp SET ALL "+r_Interp[i]+" "+g_Interp[i]+" "+b_Interp[i]+"<br> &nbsp &nbsp DELAY "+delay
         }
-    }   
+    }
+    outputLines += "<br><br>DEF MAIN <br> &nbsp &nbsp JUMP  GRADIENT"
     document.getElementById("output").innerHTML = outputLines
 }
-    
+
+function exportTxt() {
+    text = document.getElementById("output").innerText
+    text.replace(/[^\u0000-\u007E]/g, "")
+    var file = new Blob([text], {type: "txt"});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, "export.txt");
+    else { // Others
+        var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = "export.txt";
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
+    }
+}
+
+function copyTxt() {
+    var text = document.getElementById("output").innerText
+    text = text.replace(/[^\u0000-\u007E]/g, "")
+    navigator.clipboard.writeText(text);
+    alert("Copied the text!") 
+}

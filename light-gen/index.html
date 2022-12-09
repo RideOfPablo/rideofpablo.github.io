@@ -10,9 +10,21 @@
   </div>
   <div id="inputs">
       <label>Starting Color</label><br>
-      <input type="text" id="StartC" value="0, 0, 0"> <button onclick="startCRandom()">Random</button><br>
+      <input type="text" id="StartC" value="0, 0, 0"> <button onclick="startCRandom()">Random</button> <div id="colorpreview1"></div> <br>
+      <script>
+        var Start = document.getElementById("StartC")
+        Start.oninput = function () {
+          updateColorPreview1()
+        }
+      </script>
       <label>Ending Color</label><br>
-      <input type="text" id="EndC" value="255, 255, 255"> <button onclick="endCRandom()">Random</button><br>
+      <input type="text" id="EndC" value="180, 180, 180"> <button onclick="endCRandom()">Random</button> <div id="colorpreview2"></div> <br>
+      <script>
+        var End = document.getElementById("EndC")
+        End.oninput = function () {
+          updateColorPreview2()
+        }
+      </script>
       <label>Steps</label>
       <input id="stepsRange" type="range" min="1" max="30" value="15">
       <span id="stepsVal"></span><span> steps</span><br>
@@ -52,13 +64,14 @@
           }
           
       </script>
-      <button onclick="formSubmit()">Submit</button><br>
+      <button id="submitbutton" onclick="formSubmit()">Submit</button>
+      <button id="exportbutton" onclick="exportTxt()">Export</button>
+      <button id="copybutton" onclick="copyTxt()">Copy</button>
+      <br>
       <span id="testspan"></span>  <br>
       <span id="testspan2"></span> <br>
       <span id="testspan3"></span> <br>
-      <span id="preamble">DEF GRADIENT</span>
       <span id="output"><br><br>Output will go here, configure your settings above, then press "Submit"</span>
-      <span id="post"><br><br>DEF MAIN <br> &nbsp &nbsp JUMP  GRADIENT</span>
   </div>
 </body>
 
