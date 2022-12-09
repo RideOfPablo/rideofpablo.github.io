@@ -27,15 +27,19 @@
       </script>
       <label>Steps</label>
       <input id="stepsRange" type="range" min="1" max="30" value="15">
-      <span id="stepsVal"></span><span> steps</span><br>
+      <input type="text" id="stepsVal" size=1 maxlength=3 value=15><span><span> steps</span><br>
       <script>
           var slider = document.getElementById("stepsRange");
           var output = document.getElementById("stepsVal");
           output.innerHTML = slider.value;
           
           slider.oninput = function() {
-            output.innerHTML = this.value;
+            output.value = this.value;
             updateTotalTime()
+          }
+          output.oninput = function() {
+          	slider.value = output.value
+          	updateTotalTime()
           }
           
           function updateTotalTime() {
@@ -45,7 +49,7 @@
       </script>
       <label>Delay (ms)</label>
       <input type="range" min="10" max="100" value="50" step="5" id="delayRange">
-      <span id="delayVal"></span><span> ms</span><br>
+      <input type="text" id="delayVal" size=1 maxlength=4 value=50><span> ms</span><br>
       <span>Total Time: </span><span id = totalTime></span><span> ms</span> <br>
       <script>
           var slider2 = document.getElementById("delayRange");
@@ -54,12 +58,17 @@
           output2.innerHTML = slider2.value;
           updateTotalTime()
           slider2.oninput = function() {
-            output2.innerHTML = this.value;
+            output2.value = this.value;
             updateTotalTime()
           }
           
+          output2.oninput = function() {
+          	slider2.value = output2.value
+          	updateTotalTime()
+          }
+          
           function updateTotalTime() {
-            var time = parseInt(output2.innerHTML) * parseInt(document.getElementById("stepsVal").innerHTML)
+            var time = parseInt(output2.value) * parseInt(document.getElementById("stepsVal").value)
             totalTime.innerHTML = time
           }
           
@@ -74,4 +83,3 @@
       <span id="output"><br><br>Output will go here, configure your settings above, then press "Submit"</span>
   </div>
 </body>
-

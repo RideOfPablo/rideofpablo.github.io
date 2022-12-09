@@ -25,11 +25,20 @@
 
 #stepsRange{
     vertical-align: middle;
+    margin-top: 5px;
 }
 #delayRange {
     vertical-align: middle;
+    
 }
 
 span {
     vertical-align: middle;
+}
+button {
+    vertical-align: middle;
+}
+input {
+    vertical-align: middle;
+    margin-top: 5px;
 }

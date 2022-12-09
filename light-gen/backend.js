@@ -33,8 +33,9 @@ function endCRandom() {
 function formSubmit() {
     var startColor = document.getElementById("StartC").value
     var endColor = document.getElementById("EndC").value
-    var steps = document.getElementById("stepsRange").value
-    var delay = document.getElementById("delayRange").value
+    var steps = document.getElementById("stepsVal").value
+    var delay = document.getElementById("delayVal").value
+    console.log(delay)
     //document.getElementById("testspan").innerHTML = steps + " | "+ delay
     var startColorList = startColor.replace(/[^.\d /s]/g,'').split(" ")
     var endColorList = endColor.replace(/[^.\d /s]/g,'').split(" ")
@@ -62,14 +63,8 @@ function formSubmit() {
         g_Interp.push(Math.round(diffGreen*fadePercent) + Math.round(startG))
         b_Interp.push(Math.round(diffBlue*fadePercent) + Math.round(startB))
     }
-    
-    //document.getElementById("testspan").innerHTML = r_Interp    
-    //document.getElementById("testspan2").innerHTML = g_Interp
-    //document.getElementById("testspan3").innerHTML = b_Interp
     var outputLines = ""
     outputLines += "DEF GRADIENT"
-    //"<br>\xa0\xa0\xa0\xa0SET ALL "+startR+" "+startG+" "+startB + "<br>\xa0\xa0\xa0\xa0DELAY "+delay
-    // \t = tab
     for (var i=0; i < r_Interp.length; i++) {
     	outputLines += "<br> &nbsp &nbsp SET ALL "+r_Interp[i]+" "+g_Interp[i]+" "+b_Interp[i]+"<br> &nbsp &nbsp DELAY "+delay 
     }
