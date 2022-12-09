@@ -1,3 +1,13 @@
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+function startCRandom() {
+    var randomtext = getRandomInt(255)+", "+getRandomInt(255)+", "+getRandomInt(255)
+    console.log(randomtext)
+    document.getElementById("StartC").value = randomtext.toString()
+}
+
 function formSubmit() {
     var startColor = document.getElementById("StartC").value
     var endColor = document.getElementById("EndC").value
@@ -30,14 +40,31 @@ function formSubmit() {
         g_Interp.push(Math.round(diffGreen*fadePercent) + Math.round(startG))
         b_Interp.push(Math.round(diffBlue*fadePercent) + Math.round(startB))
     }
+    
     //document.getElementById("testspan").innerHTML = r_Interp    
     //document.getElementById("testspan2").innerHTML = g_Interp
     //document.getElementById("testspan3").innerHTML = b_Interp
     var outputLines = ""
-    //"<br>\u00A0\u00A0\u00A0\u00A0SET ALL "+startR+" "+startG+" "+startB + "<br>\u00A0\u00A0\u00A0\u00A0DELAY "+delay
+    //"<br>\xa0\xa0\xa0\xa0SET ALL "+startR+" "+startG+" "+startB + "<br>\xa0\xa0\xa0\xa0DELAY "+delay
     // \t = tab
     for (var i=0; i < r_Interp.length; i++) {
-    	outputLines += "<br>\u00A0\u00A0\u00A0\u00A0SET ALL "+r_Interp[i]+" "+g_Interp[i]+" "+b_Interp[i]+"<br>\u00A0\u00A0\u00A0\u00A0DELAY "+delay 
+    	outputLines += "<br> &nbsp &nbsp SET ALL "+r_Interp[i]+" "+g_Interp[i]+" "+b_Interp[i]+"<br> &nbsp &nbsp DELAY "+delay 
     }
+    console.log("Pre-reverse R: "+r_Interp)
+    r_Interp.reverse()
+    console.log("Post rev R: "+r_Interp)
+    g_Interp.reverse()
+    b_Interp.reverse()
+    for (var i=1; i < r_Interp.length-1; i++) {
+        if ((i+2) == r_Interp.length) {
+            console.log("only sent the shi")
+            outputLines += "<br> &nbsp &nbsp </span>SET ALL "+r_Interp[i]+" "+g_Interp[i]+" "+b_Interp[i]
+            outputLines += " <br> &nbsp &nbsp RETURN"
+        }
+        else {
+        outputLines += "<br> &nbsp &nbsp SET ALL "+r_Interp[i]+" "+g_Interp[i]+" "+b_Interp[i]+"<br> &nbsp &nbsp DELAY "+delay
+        }
+    }   
     document.getElementById("output").innerHTML = outputLines
 }
+    
