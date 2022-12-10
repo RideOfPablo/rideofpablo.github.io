@@ -100,3 +100,14 @@ input {
     color: red;
     vertical-align: bottom;
 }
+
+#footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 75%;
+    background-color: white;
+    color: black;
+    text-align: center;
+}
