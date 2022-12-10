@@ -89,14 +89,60 @@
     <span id="output"><br><br>Output will go here, configure your settings above, then press "Submit"</span>
   </div>
   <div id="chaser">
-    <label>Color</label><br>
-    <input type="text" id="CStartC" value="0, 0, 0"> <button onclick="CstartCRandom()">Random</button> <div id="colorpreview3"></div> <br>
+    <select name="type" id="blinkMode">
+      <option value="one">One Color</option>
+      <option value="two">Two Colors</option>
+      <option value="three">Three Colors</option>
+    </select>
+    <script>
+      var blinkMode = document.getElementById("blinkMode")
+      blinkMode.oninput = function() {
+        var blinkVal = blinkMode.value
+        console.log(blinkVal)
+        var CSecondColorHide = document.getElementById("CSecondColorHide")
+        var CThirdColorHide = document.getElementById("CThirdColorHide")
+        CSecondColorHide.style.display = "none"
+        CThirdColorHide.style.display = "none"
+        if (blinkVal == "one") {
+          CSecondColorHide.style.display = "none"
+          CThirdColorHide.style.display = "none"
+        } if (blinkVal == "two") {
+          CSecondColorHide.style.display = "block"
+          CThirdColorHide.style.display = "none"
+        } else if (blinkVal == "three") {
+          CSecondColorHide.style.display = "block"
+          CThirdColorHide.style.display = "block"
+        }
+
+      }
+    </script>
+    <br>
+    <span>Color(s)</span><br>
+    <input type="text" id="CStartC" value="255, 0, 0"> <button onclick="CstartCRandom()">Random</button> <div id="colorpreview3"></div> <br>
     <script>
       var Start = document.getElementById("CStartC")
       Start.oninput = function () {
-        updateColorPreview1()
+        updateColorPreview3()
       }
     </script>
+    <div id="CSecondColorHide">
+    <input type="text" id="CSecondColor" value="0, 255, 0"> <button onclick="CSecondCRandom()">Random</button> <div id="colorpreview4"></div> <br>
+    <script>
+      var Start = document.getElementById("CSecondColor")
+      Start.oninput = function () {
+        updateColorPreview4()
+      }
+    </script>
+    </div>
+    <div id="CThirdColorHide">
+      <input type="text" id="CThirdColor" value="0, 0, 255"> <button onclick="CThirdCRandom()">Random</button> <div id="colorpreview5"></div> <br>
+      <script>
+        var Start = document.getElementById("CThirdColor")
+        Start.oninput = function () {
+          updateColorPreview5()
+        }
+      </script>
+      </div>
     <input type="range" min="1" max="50" value="10" step="1" id="lightsRange">
     <input type="text" id="lightsVal" size=2 maxlength=4 value=10><span> Lights per section</span><br>
     <script>
@@ -124,8 +170,13 @@
     <button id="devmode" onclick="devModeToggle()">Toggle Dev Mode</button>
     <div id="devmodehidden">
       <span id="warn">WARNING: Changing the value to something other than "MAX" <br> can have unintended consequenses, do not change unless you know what you are doing </span> <br>
-      <input type="text" id="timeVal" size=2, maxlength=5 value="MAX"><span> Number of lights long the total section is</span><br>
+      <input type="text" id="lengthVal" size=2, maxlength=5 value="MAX"><span> Number of lights long the total section is</span><br>
     </div>
-    
+    <br>
+    <button id="Csubmitbutton" onclick="CFormSubmit()">Submit</button>
+    <button id="Cexportbutton" onclick="CExportTxt()">Export</button>
+    <button id="Ccopybutton" onclick="CCopyTxt()">Copy</button>
+    <br> <br> <br>
+    <span id="COutput"></span>
   </div>
 </body>

@@ -4,14 +4,14 @@ function getRandomInt(max) {
 
 function updateColorPreview1() {
     preview = document.getElementById("colorpreview1")
-    value = document.getElementById("StartC").value
+    value = document.getElementById("StartC").value.replace(/[^.\d /s]/g,'')
     console.log(value)
     preview.style.backgroundColor = "rgb("+value+")"
 }
 
 function updateColorPreview2() {
     preview2 = document.getElementById("colorpreview2")
-    value2 = document.getElementById("EndC").value
+    value2 = document.getElementById("EndC").value.replace(/[^.\d /s]/g,'')
     console.log(value2)
     preview2.style.backgroundColor = "rgb("+value2+")"
 }
@@ -134,12 +134,41 @@ function CstartCRandom() {
     updateColorPreview3()
 }
 
-function updateColorPreview3() {
-    preview2 = document.getElementById("colorpreview3")
-    value2 = document.getElementById("CStartC").value
-    console.log(value2)
-    preview2.style.backgroundColor = "rgb("+value2+")"
+function CSecondCRandom() {
+    var randomtext = getRandomInt(255)+", "+getRandomInt(255)+", "+getRandomInt(255)
+    console.log(randomtext)
+    document.getElementById("CSecondColor").value = randomtext.toString()
+    updateColorPreview4()
 }
+
+function CThirdCRandom() {
+    var randomtext = getRandomInt(255)+", "+getRandomInt(255)+", "+getRandomInt(255)
+    console.log(randomtext)
+    document.getElementById("CThirdColor").value = randomtext.toString()
+    updateColorPreview5()
+}
+
+function updateColorPreview3() {
+    preview3 = document.getElementById("colorpreview3")
+    value3 = document.getElementById("CStartC").value.replace(/[^.\d /s]/g,'')
+    console.log(value3)
+    preview3.style.backgroundColor = "rgb("+value3+")"
+}
+
+function updateColorPreview4() {
+    preview4 = document.getElementById("colorpreview4")
+    value4 = document.getElementById("CSecondColor").value.replace(/[^.\d /s]/g,'')
+    console.log("value4: "+value4) 
+    preview4.style.backgroundColor = "rgb("+value4+")"
+}
+
+function updateColorPreview5() {
+    preview5 = document.getElementById("colorpreview5")
+    value5 = document.getElementById("CThirdColor").value.replace(/[^.\d /s]/g,'')
+    console.log("value5: "+value5) 
+    preview5.style.backgroundColor = "rgb("+value5+")"
+}
+
 function devModeToggle() {
     devModeDiv = document.getElementById("devmodehidden")
     if (devModeDiv.style.display == "none") {
@@ -147,4 +176,92 @@ function devModeToggle() {
     } else {
         devModeDiv.style.display = "none"
     }
+}
+
+
+function CFormSubmit() {
+    var lightsVal = document.getElementById("lightsVal")
+    var timeVal = document.getElementById("timeVal")
+    lightsNumVal = parseInt(lightsVal.value)
+    var ColorNum = document.getElementById("blinkMode").value
+    var CColor1 = document.getElementById("CStartC")
+    if (ColorNum == "two") {
+        var CColor2 = document.getElementById("CSecondColor")
+    } if (ColorNum == "three") {
+        var CColor2 = document.getElementById("CSecondColor")
+        var CColor3 = document.getElementById("CThirdColor")
+    }
+    var lengthVal = document.getElementById("lengthVal")
+    var CoutputLines = ""
+    CoutputLines += "DEF CHASER <br> &nbsp &nbsp CLEAR ALL"
+    for (var i = 0; i < parseInt(lightsVal.value); i++) {
+        CoutputLines += "<br> &nbsp &nbsp SET "+i+"-"+lengthVal.value+"-"+(lightsVal.value * 2)+" "+CColor1.value.replace(/[^.\d /s]/g,'')
+    }
+    if (ColorNum == "one") {
+        CoutputLines += "<br> &nbsp &nbsp DELAY "+ timeVal.value
+        CoutputLines += "<br> <br> &nbsp &nbsp CLEAR ALL"
+        for (var i = 0; i < parseInt(lightsVal.value); i++) {
+            CoutputLines += "<br> &nbsp &nbsp SET "+(i+lightsNumVal)+"-"+lengthVal.value+"-"+(lightsVal.value * 2)+" "+CColor1.value.replace(/[^.\d /s]/g,'')
+        }
+    }
+    CoutputLines += "<br> &nbsp &nbsp DELAY "+ timeVal.value  
+    if (document.getElementById("CSecondColorHide").style.display == "block") {
+        CoutputLines += "<br> <br> &nbsp &nbsp CLEAR ALL"
+        for (var i = 0; i < parseInt(lightsVal.value); i++) {
+            CoutputLines += "<br> &nbsp &nbsp SET "+(i+lightsNumVal)+"-"+lengthVal.value+"-"+(lightsVal.value * 2)+" "+CColor2.value.replace(/[^.\d /s]/g,'')
+        }
+        CoutputLines += "<br> &nbsp &nbsp DELAY "+timeVal.value
+    }
+    if (document.getElementById("CThirdColorHide").style.display == "block") {
+        CoutputLines += "<br> <br> &nbsp &nbsp CLEAR ALL"
+        for (var i=0; i < parseInt(lightsVal.value); i++) {
+            CoutputLines += "<br> &nbsp &nbsp SET "+i+"-"+lengthVal.value+"-"+(lightsVal.value * 2)+" "+CColor3.value.replace(/[^.\d /s]/g,'')
+        }
+        CoutputLines += "<br> &nbsp &nbsp DELAY "+ timeVal.value
+        CoutputLines += "<br> <br> &nbsp &nbsp CLEAR ALL"
+        for (var i = 0; i < parseInt(lightsVal.value); i++) {
+            CoutputLines += "<br> &nbsp &nbsp SET "+(i+lightsNumVal)+"-"+lengthVal.value+"-"+(lightsVal.value * 2)+" "+CColor1.value.replace(/[^.\d /s]/g,'')
+        }
+        CoutputLines += "<br> &nbsp &nbsp DELAY "+ timeVal.value
+        CoutputLines += "<br> <br> &nbsp &nbsp CLEAR ALL"
+        for (var i = 0; i < parseInt(lightsVal.value); i++) {
+            CoutputLines += "<br> &nbsp &nbsp SET "+i+"-"+lengthVal.value+"-"+(lightsVal.value * 2)+" "+CColor2.value.replace(/[^.\d /s]/g,'')
+        }
+        CoutputLines += "<br> &nbsp &nbsp DELAY "+timeVal.value
+        CoutputLines += "<br> <br> &nbsp &nbsp CLEAR ALL"
+        for (var i=0; i < parseInt(lightsVal.value); i++) {
+            CoutputLines += "<br> &nbsp &nbsp SET "+(i+lightsNumVal)+"-"+lengthVal.value+"-"+(lightsVal.value * 2)+" "+CColor3.value.replace(/[^.\d /s]/g,'')
+        }
+        CoutputLines += "<br> &nbsp &nbsp DELAY "+ timeVal.value
+    }
+    CoutputLines += " <br> &nbsp &nbsp RETURN"
+    CoutputLines += "<br><br>DEF MAIN <br> &nbsp &nbsp JUMP  CHASER"
+    document.getElementById("COutput").innerHTML = CoutputLines
+}
+
+function CExportTxt() {
+    text = document.getElementById("COutput").innerText
+    text.replace(/[^\u0000-\u007E]/g, "")
+    var file = new Blob([text], {type: "txt"});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, "export.txt");
+    else { // Others
+        var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = "export.txt";
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
+    }
+}
+
+function copyTxt() {
+    var text = document.getElementById("COutput").innerText
+    text = text.replace(/[^\u0000-\u007E]/g, "")
+    navigator.clipboard.writeText(text);
+    alert("Copied the text!") 
 }
