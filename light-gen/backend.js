@@ -89,7 +89,7 @@ function formSubmit() {
 
 function exportTxt() {
     text = document.getElementById("output").innerText
-    text.replace(/[^\u0000-\u007E]/g, "")
+    text = text.replace(/[^\u0000-\u007E]/g, "")
     var file = new Blob([text], {type: "txt"});
     if (window.navigator.msSaveOrOpenBlob) // IE10+
         window.navigator.msSaveOrOpenBlob(file, "export.txt");
@@ -241,7 +241,7 @@ function CFormSubmit() {
 
 function CExportTxt() {
     text = document.getElementById("COutput").innerText
-    text.replace(/[^\u0000-\u007E]/g, "")
+    text = text.replace(/[^\u0000-\u007E]/g, "")
     var file = new Blob([text], {type: "txt"});
     if (window.navigator.msSaveOrOpenBlob) // IE10+
         window.navigator.msSaveOrOpenBlob(file, "export.txt");
