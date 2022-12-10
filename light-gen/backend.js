@@ -259,7 +259,7 @@ function CExportTxt() {
     }
 }
 
-function copyTxt() {
+function CCopyTxt() {
     var text = document.getElementById("COutput").innerText
     text = text.replace(/[^\u0000-\u007E]/g, "")
     navigator.clipboard.writeText(text);
