@@ -180,6 +180,7 @@ function devModeToggle() {
 
 
 function CFormSubmit() {
+    var BPM = document.getElementById("BPMCalc").value
     var lightsVal = document.getElementById("lightsVal")
     var timeVal = document.getElementById("timeVal")
     lightsNumVal = parseInt(lightsVal.value)
@@ -192,47 +193,54 @@ function CFormSubmit() {
         var CColor3 = document.getElementById("CThirdColor")
     }
     var lengthVal = document.getElementById("lengthVal")
+    var time = timeVal.value
     var CoutputLines = ""
+    //document.getElementById("BPMSpan").innerHTML = BPM
+    if (BPM !== "DEFAULT") {
+        time = Math.round(60000 / BPM)
+        document.getElementById("BPMSpan").innerHTML = BPM
+    }
+    //document.getElementById("BPMSpan").innerHTML = time
     CoutputLines += "DEF CHASER <br> &nbsp &nbsp CLEAR ALL"
     for (var i = 0; i < parseInt(lightsVal.value); i++) {
         CoutputLines += "<br> &nbsp &nbsp SET "+i+"-"+lengthVal.value+"-"+(lightsVal.value * 2)+" "+CColor1.value.replace(/[^.\d /s]/g,'')
     }
     if (ColorNum == "one") {
-        CoutputLines += "<br> &nbsp &nbsp DELAY "+ timeVal.value
+        CoutputLines += "<br> &nbsp &nbsp DELAY "+ time
         CoutputLines += "<br> <br> &nbsp &nbsp CLEAR ALL"
         for (var i = 0; i < parseInt(lightsVal.value); i++) {
             CoutputLines += "<br> &nbsp &nbsp SET "+(i+lightsNumVal)+"-"+lengthVal.value+"-"+(lightsVal.value * 2)+" "+CColor1.value.replace(/[^.\d /s]/g,'')
         }
     }
-    CoutputLines += "<br> &nbsp &nbsp DELAY "+ timeVal.value  
+    CoutputLines += "<br> &nbsp &nbsp DELAY "+ time  
     if (document.getElementById("CSecondColorHide").style.display == "block") {
         CoutputLines += "<br> <br> &nbsp &nbsp CLEAR ALL"
         for (var i = 0; i < parseInt(lightsVal.value); i++) {
             CoutputLines += "<br> &nbsp &nbsp SET "+(i+lightsNumVal)+"-"+lengthVal.value+"-"+(lightsVal.value * 2)+" "+CColor2.value.replace(/[^.\d /s]/g,'')
         }
-        CoutputLines += "<br> &nbsp &nbsp DELAY "+timeVal.value
+        CoutputLines += "<br> &nbsp &nbsp DELAY "+time
     }
     if (document.getElementById("CThirdColorHide").style.display == "block") {
         CoutputLines += "<br> <br> &nbsp &nbsp CLEAR ALL"
         for (var i=0; i < parseInt(lightsVal.value); i++) {
             CoutputLines += "<br> &nbsp &nbsp SET "+i+"-"+lengthVal.value+"-"+(lightsVal.value * 2)+" "+CColor3.value.replace(/[^.\d /s]/g,'')
         }
-        CoutputLines += "<br> &nbsp &nbsp DELAY "+ timeVal.value
+        CoutputLines += "<br> &nbsp &nbsp DELAY "+ time
         CoutputLines += "<br> <br> &nbsp &nbsp CLEAR ALL"
         for (var i = 0; i < parseInt(lightsVal.value); i++) {
             CoutputLines += "<br> &nbsp &nbsp SET "+(i+lightsNumVal)+"-"+lengthVal.value+"-"+(lightsVal.value * 2)+" "+CColor1.value.replace(/[^.\d /s]/g,'')
         }
-        CoutputLines += "<br> &nbsp &nbsp DELAY "+ timeVal.value
+        CoutputLines += "<br> &nbsp &nbsp DELAY "+ time
         CoutputLines += "<br> <br> &nbsp &nbsp CLEAR ALL"
         for (var i = 0; i < parseInt(lightsVal.value); i++) {
             CoutputLines += "<br> &nbsp &nbsp SET "+i+"-"+lengthVal.value+"-"+(lightsVal.value * 2)+" "+CColor2.value.replace(/[^.\d /s]/g,'')
         }
-        CoutputLines += "<br> &nbsp &nbsp DELAY "+timeVal.value
+        CoutputLines += "<br> &nbsp &nbsp DELAY "+time
         CoutputLines += "<br> <br> &nbsp &nbsp CLEAR ALL"
         for (var i=0; i < parseInt(lightsVal.value); i++) {
             CoutputLines += "<br> &nbsp &nbsp SET "+(i+lightsNumVal)+"-"+lengthVal.value+"-"+(lightsVal.value * 2)+" "+CColor3.value.replace(/[^.\d /s]/g,'')
         }
-        CoutputLines += "<br> &nbsp &nbsp DELAY "+ timeVal.value
+        CoutputLines += "<br> &nbsp &nbsp DELAY "+ time
     }
     CoutputLines += " <br> &nbsp &nbsp RETURN"
     CoutputLines += "<br><br>DEF MAIN <br> &nbsp &nbsp JUMP  CHASER"

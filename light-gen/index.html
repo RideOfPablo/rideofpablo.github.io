@@ -171,12 +171,15 @@
     <div id="devmodehidden">
       <span id="warn">WARNING: Changing the value to something other than "MAX" <br> can have unintended consequenses, do not change unless you know what you are doing </span> <br>
       <input type="text" id="lengthVal" size=2, maxlength=5 value="MAX"><span> Number of lights long the total section is</span><br>
+      <span>BPM Calculator, used to sync your flashes to a song.</span>
+      <input type="text" id="BPMCalc" size=2, maxlength=5 value="DEFAULT"><span> BPM</span> 
     </div>
     <br>
     <button id="Csubmitbutton" onclick="CFormSubmit()">Submit</button>
     <button id="Cexportbutton" onclick="CExportTxt()">Export</button>
     <button id="Ccopybutton" onclick="CCopyTxt()">Copy</button>
     <br> <br> <br>
+    <span id="BPMSpan"></span>
     <span id="COutput"></span>
   </div>
   <div id="footer">
