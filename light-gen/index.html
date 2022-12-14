@@ -15,6 +15,12 @@
   </select>
   <br><br>
   <div id="gradient">
+    <span>Number of Colors: </span>
+    <select name="type" id="fadeDropdown" oninput="updateFade()">
+      <option value="two">Two</option>
+      <option value="three">Three</option>
+    </select>
+    <br><br>
     <label>Starting Color</label><br>
     <input type="text" id="StartC" value="0, 0, 0"> <button onclick="startCRandom()">Random</button> <div id="colorpreview1"></div> <br>
     <script>
@@ -23,7 +29,7 @@
         updateColorPreview1()
       }
     </script>
-    <label>Ending Color</label><br>
+    <label>2nd Color</label><br>
     <input type="text" id="EndC" value="180, 180, 180"> <button onclick="endCRandom()">Random</button> <div id="colorpreview2"></div> <br>
     <script>
       var End = document.getElementById("EndC")
@@ -31,6 +37,16 @@
         updateColorPreview2()
       }
     </script>
+    <div id="middleColor">
+      <label>3rd Color</label><br>
+      <input type="text" id="MiddleC" value="255, 0, 255"> <button onclick="middleCRandom()">Random</button> <div id="colorpreviewMiddle"></div> <br>
+      <script>
+        var End = document.getElementById("MiddleC")
+        End.oninput = function () {
+          updateColorPreviewMiddle()
+        }
+      </script>
+    </div>
     <label>Steps</label>
     <input id="stepsRange" type="range" min="1" max="30" value="15">
     <input type="text" id="stepsVal" size=2 maxlength=3 value=15><span><span> steps</span><br>

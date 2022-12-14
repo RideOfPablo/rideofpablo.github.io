@@ -11,6 +11,10 @@
     display:none;
 }
 
+#middleColor {
+    display: none;
+}
+
 #colorpreview1 {
     display: inline-block;
     width: 20px;
@@ -26,6 +30,16 @@
     width: 20px;
     height: 20px;
     background-color: rgb(180,180,180);
+    left: 5px;
+    top: 5px;
+    vertical-align:middle;
+}
+
+#colorpreviewMiddle {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(255,0,255);
     left: 5px;
     top: 5px;
     vertical-align:middle;

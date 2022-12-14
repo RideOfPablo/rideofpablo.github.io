@@ -9,6 +9,23 @@ function updateColorPreview1() {
     preview.style.backgroundColor = "rgb("+value+")"
 }
 
+function updateFade() {
+    fadeDropdown = document.getElementById("fadeDropdown")
+    dropdownDiv = document.getElementById("middleColor")
+    if (fadeDropdown.value == "two") {
+        dropdownDiv.style.display = "none"
+    } else {
+        dropdownDiv.style.display = "block"
+    }
+}
+
+function updateColorPreviewMiddle() {
+    previewMiddle = document.getElementById("colorpreviewMiddle")
+    valueMiddle = document.getElementById("MiddleC").value.replace(/[^.\d /s]/g,'')
+    console.log(valueMiddle)
+    previewMiddle.style.backgroundColor = "rgb("+valueMiddle+")"
+}
+
 function updateColorPreview2() {
     preview2 = document.getElementById("colorpreview2")
     value2 = document.getElementById("EndC").value.replace(/[^.\d /s]/g,'')
@@ -23,6 +40,13 @@ function startCRandom() {
     updateColorPreview1()
 }
 
+function middleCRandom() {
+    var randomtext = getRandomInt(255)+", "+getRandomInt(255)+", "+getRandomInt(255)
+    console.log(randomtext)
+    document.getElementById("MiddleC").value = randomtext.toString()
+    updateColorPreviewMiddle()
+}
+
 function endCRandom() {
     var randomtext = getRandomInt(255)+", "+getRandomInt(255)+", "+getRandomInt(255)
     console.log(randomtext)
@@ -33,35 +57,46 @@ function endCRandom() {
 function formSubmit() {
     var startColor = document.getElementById("StartC").value
     var endColor = document.getElementById("EndC").value
+    var extraColor = document.getElementById("MiddleC").value
     var steps = document.getElementById("stepsVal").value
     var delay = document.getElementById("delayVal").value
     console.log(delay)
     //document.getElementById("testspan").innerHTML = steps + " | "+ delay
     var startColorList = startColor.replace(/[^.\d /s]/g,'').split(" ")
     var endColorList = endColor.replace(/[^.\d /s]/g,'').split(" ")
+    var extraColorList = endColor.replace(/[^.\d /s]/g,'').split(" ")
     var startR = startColorList[0]
     var startG = startColorList[1]
     var startB = startColorList[2]
     var endR = endColorList[0]
     var endG = endColorList[1]
     var endB = endColorList[2]
-    var r_Interp = []
-    var g_Interp = []
-    var b_Interp = []
-    var fades = []
+    var extraR = extraColorList[0]
+    var extraG = extraColorList[1]
+    var extraB = extraColorList[2]
+    var r_Interp = [startR]
+    var g_Interp = [startG]
+    var b_Interp = [startB]
+    var r_InterpExtra = []
+    var g_InterpExtra = []
+    var b_InterpExtra = []
     var diffRed = parseInt(endR) - parseInt(startR)
     var diffGreen = parseInt(endG) - parseInt(startG)
     var diffBlue = parseInt(endB) - parseInt(startB)
-    r_Interp.push(startR)
-    g_Interp.push(startG)
-    b_Interp.push(startB)
+    var extraDiffRed = parseInt(extraR) - parseInt(endR)
+    var extraDiffGreen = parseInt(extraG) - parseInt(endG)
+    var extraDiffBlue = parseInt(extraB) - parseInt(endB)
     for (var i = 0; i < parseInt(steps); i++) {
-        var fadePercent = (i + 1) / steps
-        fades.push(fadePercent)
-        
+        var fadePercent = (i + 1) / steps        
         r_Interp.push(Math.round(diffRed*fadePercent) + Math.round(startR))
         g_Interp.push(Math.round(diffGreen*fadePercent) + Math.round(startG))
         b_Interp.push(Math.round(diffBlue*fadePercent) + Math.round(startB))
+    }
+    for (var i = 0; i < parseInt(steps); i++) {
+        var fadePercent = (i + 1) / steps        
+        r_InterpExtra.push(Math.round(extraDiffRed*fadePercent) + Math.round(endR))
+        g_InterpExtra.push(Math.round(extraDiffGreen*fadePercent) + Math.round(endG))
+        b_InterpExtra.push(Math.round(extraDiffBlue*fadePercent) + Math.round(endB))
     }
     var outputLines = ""
     outputLines += "DEF GRADIENT"
